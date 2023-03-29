@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @CrossOrigin
 @RestController
 @RequestMapping("/api/users")
@@ -17,7 +16,7 @@ public class UserController { // start of class
 	private UserRepository userRepo;
 	
 	@GetMapping
-	public ResponseEntity<Iterable<User>> getUser(){
+	public ResponseEntity<Iterable<User>> getAllUsers(){
 		Iterable<User> users = userRepo.findAll();
 		return new ResponseEntity<Iterable<User>>(users, HttpStatus.OK);
 	}
@@ -55,7 +54,5 @@ public class UserController { // start of class
 		userRepo.delete(user.get());
 		return new ResponseEntity<User>(user.get(), HttpStatus.GONE);
 	}
-	
-	
-	
+		
 } // end of class
