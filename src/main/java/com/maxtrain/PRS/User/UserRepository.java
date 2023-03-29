@@ -1,5 +1,7 @@
 package com.maxtrain.PRS.User;
 
-public interface UserRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Integer>{
 
 }
