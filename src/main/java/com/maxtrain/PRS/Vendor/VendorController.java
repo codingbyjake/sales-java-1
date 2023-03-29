@@ -54,7 +54,4 @@ public class VendorController {
 		return new ResponseEntity<Vendor>(vendor.get(), HttpStatus.GONE);
 	}
 	
-	
-	
-
 }
