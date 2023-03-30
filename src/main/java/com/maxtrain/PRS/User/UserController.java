@@ -30,6 +30,20 @@ public class UserController { // start of class
 		return new ResponseEntity<User>(user.get(), HttpStatus.OK);
 	}
 	
+	// *********** Additional Login Method ******************
+	@GetMapping("{username}/{password}")
+	public ResponseEntity<User> loginUser(@PathVariable String username, @PathVariable String password){
+		Optional<User> user = userRepo.findByUsername(username);
+		if(user.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if(!user.get().getPassword().equals(password)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+	}
+
+	
 	@PutMapping("{id}")
 	public ResponseEntity<User> putUser(@PathVariable int id, @RequestBody User user){
 		if(user.getId() != id) {

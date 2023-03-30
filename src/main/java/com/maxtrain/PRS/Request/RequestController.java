@@ -40,6 +40,21 @@ public class RequestController {
 		return new ResponseEntity<Request>(updatedRequest, HttpStatus.OK);
 	}
 	
+	// **************** Additional Conditional Set to Review or Approved Method
+	@PutMapping("review/{id}")
+	public ResponseEntity<Request> review(@PathVariable int id, @RequestBody Request request){
+		if(request.getId() != id) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if(request.getTotal()<= 50) {
+			request.setStatus("APPROVED");
+			}else {
+			request.setStatus("REVIEW");
+			}
+		Request updatedRequest = reqRepo.save(request);
+		return new ResponseEntity<Request>(updatedRequest, HttpStatus.OK);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Request> postRequest(@RequestBody Request request){
 		Request newRequest = reqRepo.save(request);
