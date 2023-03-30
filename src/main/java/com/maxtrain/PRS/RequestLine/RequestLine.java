@@ -1,6 +1,6 @@
 package com.maxtrain.PRS.RequestLine;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.maxtrain.PRS.Product.Product;
 import com.maxtrain.PRS.Request.Request;
 
@@ -17,7 +17,7 @@ public class RequestLine {
 	private int Quantity = 1;
 	
 	// FK's
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToOne(optional=false)
 	@JoinColumn(name="requestId", columnDefinition="int")
 	private Request request;

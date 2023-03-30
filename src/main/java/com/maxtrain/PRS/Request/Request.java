@@ -2,6 +2,7 @@ package com.maxtrain.PRS.Request;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.maxtrain.PRS.RequestLine.RequestLine;
 import com.maxtrain.PRS.User.User;
 
@@ -35,6 +36,7 @@ public class Request {
 	private User user;
 	
 	// Virtual Collection
+	@JsonManagedReference
 	@OneToMany(mappedBy="request")
 	private List<RequestLine> requestLines;
 
