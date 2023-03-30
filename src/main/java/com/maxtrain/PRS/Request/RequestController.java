@@ -31,6 +31,16 @@ public class RequestController {
 		return new ResponseEntity<Request>(request.get(), HttpStatus.OK);
 	}
 	
+	// **************** Additional Get All Requests with Status REVIEW and not owned by current User Method
+	@GetMapping("reviews/{id}")
+	public ResponseEntity<Iterable<Request>> getReviews(@PathVariable int id){
+		//Optional<Iterable<Request>> requests = reqRepo.findByStatus("REVIEW").Where(reqRepo.findAll().getUser() != id);
+		//Optional<Iterable<Request>> requests = " SELECT * FROM Requests WHERE status = "REVIEW" && "
+		
+		Optional<Iterable<Request>> requests = reqRepo.findByStatusAndUserIdNot("REVIEW", id);		
+		return new ResponseEntity<Iterable<Request>>(requests.get(), HttpStatus.OK);
+	}
+	
 	@PutMapping("{id}")
 	public ResponseEntity<Request> putRequest(@PathVariable int id, @RequestBody Request request){
 		if(request.getId() != id) {
@@ -51,6 +61,28 @@ public class RequestController {
 			}else {
 			request.setStatus("REVIEW");
 			}
+		Request updatedRequest = reqRepo.save(request);
+		return new ResponseEntity<Request>(updatedRequest, HttpStatus.OK);
+	}
+	
+	// **************** Additional Set to Approved Method
+	@PutMapping("approve/{id}")
+	public ResponseEntity<Request> approve(@PathVariable int id, @RequestBody Request request){
+		if(request.getId() != id) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		request.setStatus("APPROVED");
+		Request updatedRequest = reqRepo.save(request);
+		return new ResponseEntity<Request>(updatedRequest, HttpStatus.OK);
+	}
+	
+	// **************** Additional Set to Rejected Method
+	@PutMapping("reject/{id}")
+	public ResponseEntity<Request> reject(@PathVariable int id, @RequestBody Request request){
+		if(request.getId() != id) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		request.setStatus("REJECTED");
 		Request updatedRequest = reqRepo.save(request);
 		return new ResponseEntity<Request>(updatedRequest, HttpStatus.OK);
 	}
