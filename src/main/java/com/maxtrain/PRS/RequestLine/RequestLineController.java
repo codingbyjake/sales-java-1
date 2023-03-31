@@ -41,7 +41,7 @@ public class RequestLineController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		RequestLine updatedRequestLine = reqlineRepo.save(requestline);
-		RecalculateRequestTotal(id);													//  >>>>>>>>>>>>>>>  Inserted Call to RecalculateRequestTotal
+		RecalculateRequestTotal(updatedRequestLine.getRequest().getId());													//  >>>>>>>>>>>>>>>  Inserted Call to RecalculateRequestTotal
 		return new ResponseEntity<RequestLine>(updatedRequestLine, HttpStatus.OK);
 	}
 	
