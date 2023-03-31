@@ -49,7 +49,7 @@ public class RequestLineController {
 	public ResponseEntity<RequestLine> postRequestLine(@RequestBody RequestLine requestline){
 		RequestLine newRequestLine = reqlineRepo.save(requestline);
 		RecalculateRequestTotal(newRequestLine.getRequest().getId());						//  >>>>>>>>>>>>>>>  Inserted Call to RecalculateRequestTotal
-		return new ResponseEntity<RequestLine>(newRequestLine, HttpStatus.OK);
+		return new ResponseEntity<RequestLine>(newRequestLine, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("{id}")

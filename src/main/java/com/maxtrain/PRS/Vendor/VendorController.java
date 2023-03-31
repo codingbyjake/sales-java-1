@@ -41,7 +41,7 @@ public class VendorController {
 	@PostMapping
 	public ResponseEntity<Vendor> postVendor(@RequestBody Vendor vendor){
 		Vendor newVendor = venRepo.save(vendor);
-		return new ResponseEntity<Vendor>(newVendor, HttpStatus.OK);	
+		return new ResponseEntity<Vendor>(newVendor, HttpStatus.CREATED);	
 	}
 	
 	@DeleteMapping("{id}")

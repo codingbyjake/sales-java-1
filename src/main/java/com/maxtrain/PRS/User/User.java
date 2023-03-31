@@ -22,10 +22,12 @@ public class User {
 	private String phone;
 	@Column(length=255, nullable = true)
 	private String email;
-	@Column(nullable = false)
 	private boolean isReviewer;
-	@Column(nullable = false)
 	private boolean isAdmin;
+	
+	
+	// Getters and Setters
+	
 	public int getId() {
 		return id;
 	}
@@ -68,16 +70,16 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public boolean getReviewer() {
+	public boolean getIsReviewer() {
 		return isReviewer;
 	}
-	public void setReviewer(boolean isReviewer) {
+	public void setIsReviewer(boolean isReviewer) {
 		this.isReviewer = isReviewer;
 	}
-	public boolean getAdmin() {
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 	

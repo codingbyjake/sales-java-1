@@ -90,17 +90,25 @@ public class RequestController {
 	@PostMapping
 	public ResponseEntity<Request> postRequest(@RequestBody Request request){
 		Request newRequest = reqRepo.save(request);
-		return new ResponseEntity<Request>(newRequest, HttpStatus.OK);
+		return new ResponseEntity<Request>(newRequest, HttpStatus.CREATED);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping("{id}")
-	public ResponseEntity<Request> deleteRequest(@PathVariable int id){
+	//public ResponseEntity<Request> deleteRequest(@PathVariable int id){
+	public ResponseEntity deleteRequest(@PathVariable int id){
 		Optional<Request> request = reqRepo.findById(id);
 		if(request.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		//Request deletedRequest = request.get();
 		reqRepo.delete(request.get());
-		return new ResponseEntity<Request>(request.get(), HttpStatus.GONE);
+		//return new ResponseEntity<Request>(request.get(), HttpStatus.GONE);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 }
+
+
+
+

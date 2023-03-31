@@ -44,7 +44,7 @@ public class ProductController {
 	@PostMapping
 	public ResponseEntity<Product> postProduct(@RequestBody Product product){
 		Product newProduct = prodRepo.save(product);
-		return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
+		return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("{id}")
@@ -55,6 +55,7 @@ public class ProductController {
 		}
 		prodRepo.delete(product.get());
 		return new ResponseEntity<Product>(product.get(), HttpStatus.GONE);
+	
 	}
 		
 

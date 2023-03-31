@@ -56,7 +56,7 @@ public class UserController { // start of class
 	@PostMapping
 	public ResponseEntity<User> postUser(@RequestBody User user){
 		User newUser = userRepo.save(user);
-		return new ResponseEntity<User>(newUser, HttpStatus.OK);
+		return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("{id}")
